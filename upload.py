@@ -1,14 +1,14 @@
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 
-gauth = GoogleAuth()
-gauth.LoadSettingsFile("settings.yaml")
-gauth.CommandLineAuth()  # sekali login, nanti pakai refresh token
+# Inisialisasi langsung dengan settings.yaml
+gauth = GoogleAuth(settings_file="settings.yaml")
+gauth.CommandLineAuth()
 
 drive = GoogleDrive(gauth)
 
-f = drive.CreateFile({'title': 'contoh.txt'})
-f.SetContentFile('contoh.txt')
-f.Upload()
+file = drive.CreateFile({'title': 'contoh.txt'})
+file.SetContentFile('contoh.txt')
+file.Upload()
 
-print("Upload selesai!")
+print("✅ Upload selesai!")
